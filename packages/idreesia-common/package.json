@@ -1,0 +1,9 @@
+{
+  "name": "@idreesia/common",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "dependencies": {
+    "@idreesia/database": "0.0.0"
+  }
+}

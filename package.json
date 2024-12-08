@@ -1,0 +1,20 @@
+{
+  "name": "idreesia-erp",
+  "private": true,
+  "scripts": {
+    "compose": "docker compose --file 'docker-compose.yml'",
+    "docker:up": "yarn compose up -d --build",
+    "docker:down": "yarn compose down",
+    "docker:destroy": "yarn compose down --volumes"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "lerna": "^8.1.9"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

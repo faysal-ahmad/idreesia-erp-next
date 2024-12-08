@@ -1,0 +1,14 @@
+FROM --platform=linux/amd64 node:22.12.0-alpine3.20
+
+RUN apk --no-cache add postgresql-client
+RUN yarn global add lerna@8
+
+VOLUME /idreesia-erp
+WORKDIR /idreesia-erp
+
+EXPOSE 3000
+
+CMD yarn install && \
+  yarn prisma:generate-client && \
+  yarn prisma:migrate-db && \
+  lerna run dev --stream --scope '@idreesia/web'
