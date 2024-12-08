@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "main": "index.ts",
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} seeder.ts"
+  },
   "scripts": {
     "prisma-generate": "prisma generate",
     "prisma-migrations": "prisma migrate dev --name init",
@@ -11,12 +14,13 @@
     "prisma-seed-db": "prisma db seed"
   },
   "dependencies": {
-    "@prisma/client": "6.0.1"
+    "@prisma/client": "6.0.1",
+    "bcrypt": "^5.1.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "22.10.1",
     "prisma": "6.0.1",
-    "ts-node": "^10.9.2",
-    "typescript": "5.7.2"
+    "ts-node": "^10.9.2"
   }
 }

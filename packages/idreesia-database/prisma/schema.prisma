@@ -1,7 +1,7 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-  schemas  = ["idreesia"]
+  schemas  = ["erp"]
 }
 
 generator client {
@@ -11,10 +11,11 @@ generator client {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String    @id @default(uuid())
   name          String?
   email         String    @unique
   emailVerified DateTime?
+  passwordHash  String?
   image         String?
   accounts      Account[]
   sessions      Session[]
@@ -22,7 +23,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@schema("idreesia")
+  @@schema("erp")
 }
 
 model Account {
@@ -44,7 +45,7 @@ model Account {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@id([provider, providerAccountId])
-  @@schema("idreesia")
+  @@schema("erp")
 }
 
 model Session {
@@ -56,7 +57,7 @@ model Session {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@schema("idreesia")
+  @@schema("erp")
 }
 
 model VerificationToken {
@@ -65,5 +66,5 @@ model VerificationToken {
   expires    DateTime
 
   @@id([identifier, token])
-  @@schema("idreesia")
+  @@schema("erp")
 }

@@ -9,6 +9,7 @@ WORKDIR /idreesia-erp
 EXPOSE 3000
 
 CMD yarn install && \
-  yarn prisma:generate-client && \
-  yarn prisma:migrate-db && \
+  lerna run prisma-generate && \
+  lerna run prisma-migrate-db && \
+  lerna run prisma-seed-db && \
   lerna run dev --stream --scope '@idreesia/web'

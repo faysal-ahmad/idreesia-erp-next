@@ -1,9 +1,10 @@
 -- CreateTable
-CREATE TABLE "idreesia"."User" (
+CREATE TABLE "erp"."User" (
     "id" TEXT NOT NULL,
     "name" TEXT,
     "email" TEXT NOT NULL,
     "emailVerified" TIMESTAMP(3),
+    "passwordHash" TEXT,
     "image" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -12,7 +13,7 @@ CREATE TABLE "idreesia"."User" (
 );
 
 -- CreateTable
-CREATE TABLE "idreesia"."Account" (
+CREATE TABLE "erp"."Account" (
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "provider" TEXT NOT NULL,
@@ -31,7 +32,7 @@ CREATE TABLE "idreesia"."Account" (
 );
 
 -- CreateTable
-CREATE TABLE "idreesia"."Session" (
+CREATE TABLE "erp"."Session" (
     "sessionToken" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
@@ -40,7 +41,7 @@ CREATE TABLE "idreesia"."Session" (
 );
 
 -- CreateTable
-CREATE TABLE "idreesia"."VerificationToken" (
+CREATE TABLE "erp"."VerificationToken" (
     "identifier" TEXT NOT NULL,
     "token" TEXT NOT NULL,
     "expires" TIMESTAMP(3) NOT NULL,
@@ -49,13 +50,13 @@ CREATE TABLE "idreesia"."VerificationToken" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_email_key" ON "idreesia"."User"("email");
+CREATE UNIQUE INDEX "User_email_key" ON "erp"."User"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Session_sessionToken_key" ON "idreesia"."Session"("sessionToken");
+CREATE UNIQUE INDEX "Session_sessionToken_key" ON "erp"."Session"("sessionToken");
 
 -- AddForeignKey
-ALTER TABLE "idreesia"."Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "idreesia"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "erp"."Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "erp"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "idreesia"."Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "idreesia"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "erp"."Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "erp"."User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
