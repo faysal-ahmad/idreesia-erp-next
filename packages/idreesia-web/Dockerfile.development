@@ -6,7 +6,7 @@ RUN yarn global add lerna@8
 VOLUME /idreesia-erp
 WORKDIR /idreesia-erp
 
-EXPOSE 3000
+EXPOSE 5173
 
 CMD yarn install && \
   lerna run prisma-generate && \

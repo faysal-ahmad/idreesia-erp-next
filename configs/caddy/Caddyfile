@@ -4,7 +4,7 @@
 
 http://127.0.0.1 {
 	route /* {
-		reverse_proxy idreesia-web:3000
+		reverse_proxy idreesia-web:5173
 	}
 	log {
 		output stdout
